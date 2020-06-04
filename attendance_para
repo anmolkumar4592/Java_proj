@@ -1,0 +1,99 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package student_database_javaproj;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.*;
+/**
+ *
+ * @author pavilion
+ */
+public class Attendance_Parameters extends JFrame implements ActionListener {
+    JPanel panel;
+    JLabel sub1, sub2, sub3, sub4, sub5, sub6,message;
+    JTextField sub1_tf, sub2_tf, sub3_tf, sub4_tf, sub5_tf, sub6_tf;
+    JButton update, cancel;
+    Attendance_Parameters(){
+        
+        sub1 = new JLabel();
+        sub2 = new JLabel();
+        sub3 = new JLabel();
+        sub4 = new JLabel();
+        sub5 = new JLabel();
+        sub6 = new JLabel();
+        sub1_tf = new JTextField();
+        sub2_tf = new JTextField();
+        sub3_tf = new JTextField();
+        sub4_tf = new JTextField();
+        sub5_tf = new JTextField();
+        sub6_tf = new JTextField();
+        sub1.setText(" English");
+        sub2.setText(" Maths");
+        sub3.setText(" Science");
+        sub4.setText(" Social Studies");
+        sub5.setText(" Computer Science");
+        sub6.setText(" Business Studies");
+        
+        update = new JButton("UPDATE");
+        cancel = new JButton("CANCEL");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel = new JPanel(new GridLayout(4,4,30,50));
+        panel.add(sub1);
+        panel.add(sub1_tf);
+        panel.add(sub2);
+        panel.add(sub2_tf);
+        panel.add(sub3);
+         panel.add(sub3_tf);
+        panel.add(sub4);
+         panel.add(sub4_tf);
+        panel.add(sub5);
+         panel.add(sub5_tf);
+        panel.add(sub6);
+        panel.add(sub6_tf); 
+         
+        panel.add(update);
+        panel.add(cancel);
+        message = new JLabel();
+        panel.add(message);
+        
+       update.addActionListener(this);
+       cancel.addActionListener(this);
+        
+       add(panel, BorderLayout.CENTER);
+      setTitle("Please Update the Student's Attendance Here !");
+      setSize(500,500);
+      setVisible(true);
+    }
+      public static void main (String args[]) throws Exception{
+          
+          Class.forName("com.mysql.cj.jdbc.Driver");
+          Connection conn = DriverManager.getConnection("jdbc://mysql://localhost:3306/test", "root","root");
+          Statement st = conn.createStatement();
+          ResultSet rs = st.executeQuery("select * from stud_attendance");
+          
+          
+        new  Attendance_Parameters();
+      }
+        
+      public void actionPerformed(ActionEvent ae){
+          
+          if(ae.getSource()==update){
+              
+              message.setText(" Student data is updated ");
+              
+      }
+          
+          else{
+              System.exit(0);
+          }
+        
+    }
+}
