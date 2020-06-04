@@ -1,0 +1,75 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package student_database_javaproj;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.sql.*;
+
+/**
+ *
+ * @author pavilion
+ */
+public class Student_view extends JFrame implements ActionListener {
+    
+    JPanel panel;
+    JLabel english,maths,science,sst,cs,bs,eng_m,mat_m,sci_m,sst_m,cs_m,bs_m;
+    JButton ok;
+    
+    Student_view(){
+        english = new JLabel();
+        english.setText("ENGLISH :");
+        maths = new JLabel();
+        maths.setText("MATHS :");
+        science = new JLabel();
+        science.setText("SCIENCE :");
+        sst = new JLabel();
+        sst.setText("SOCIAL STUDIES :");
+        cs = new JLabel();
+        cs.setText("COMPUTER SCIENCE :");
+        bs = new JLabel();
+        bs.setText("BUSINESS STUDIES");
+        eng_m = new JLabel();
+        mat_m = new JLabel();
+        sci_m = new JLabel();
+        sst_m = new JLabel();
+        cs_m = new JLabel();
+        bs_m = new JLabel();
+        
+        ok= new JButton("OK");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel= new JPanel(new GridLayout(4,4,30,50));
+        panel.add(english);
+        panel.add(eng_m);
+        panel.add(maths);
+        panel.add(mat_m);
+        panel.add(science);
+         panel.add(sci_m);
+        panel.add(sst);
+         panel.add(sst_m);
+        panel.add(cs);
+         panel.add(cs_m);
+        panel.add(bs);
+         panel.add(bs_m);
+     panel.add(ok) ;
+     
+     ok.addActionListener(this);
+     add(panel, BorderLayout.CENTER);
+      setTitle("Here is your attendance !");
+      setSize(500,500);
+      setVisible(true);
+    }
+    
+    public static void main(String args[]){
+        new Student_view();
+    }
+    
+    public void actionPerformed(ActionEvent ae){
+        System.exit(0);
+    }
+    
+}
